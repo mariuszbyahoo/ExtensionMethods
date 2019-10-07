@@ -12,5 +12,13 @@ namespace ExtensionMethods.Library
         {
             return config.AsEnumerable().Any();
         }
+
+        public static IConfigurationBuilder AddStandardProviders(this IConfigurationBuilder configurationBuilder)
+        {
+            return configurationBuilder.AddJsonFile("appsettings.json")
+                                        .AddEnvironmentVariables()
+                                        .AddJsonFile("config/config.json", optional: true)
+                                        .AddJsonFile("secrets/secrets.json", optional: true);
+        }
     }
 }
